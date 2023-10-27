@@ -6,6 +6,14 @@ const App = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
+
+  // let br = useMemo(() => bookReducer.bankBookList, [date, party2, bookReducer.bankBookList]);
+  // let fd = useMemo(() => filteredData, [date, party2, filteredData]);
+
+  // const handleDelete = useCallback((row) => {
+  //   setModal(true);
+  //   setBookInfo({...bookInfo, id: row.id});
+  // }, []);
   return (
     <>
       <div style={{ border: "2px solid red", padding: "50px", margin: "10px" }}>
