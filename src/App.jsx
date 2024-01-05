@@ -3,40 +3,32 @@ import Child1 from "./Child1";
 import Child2 from "./Child2";
 
 const App = () => {
+  // console.log("parent")
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
-  let memoAge = useMemo(() => age, [age]);
-  let memoName = useMemo(() => name, [age]);
+  let memoAge = useMemo(() => age, []);
+  let memoName = useMemo(() => name, [name]);
 
-  const handleEdit = useCallback((row) => {
-    console.log(row, "editing");
+  const handleDelete = useCallback((data) => {
+    console.log("delete", data);
+    handleConsole()
   }, []);
+  
+  
+  const handleConsole=()=>{
+    console.log("oooooooooooo");
 
-  const handleDelete = () => {
-    console.log("delete");
-  };
-
-  useEffect(() => {
-    console.log("mem");
-  }, [memoName]);
+  }
   return (
     <>
       <div style={{ border: "2px solid red", padding: "50px", margin: "10px" }}>
         <h1>parent</h1>
         <input onChange={(e) => setName(e.target.value)} placeholder="name" />
         <input onChange={(e) => setAge(e.target.value)} placeholder="age" />
-        <Child1 />
-        <Child2
-          name={memoName}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
-        {/* 
-        case1 not wrap in memo             : rerender  (child1)
-        case2 wrap in memo and no props    : no rerender        
-        case3 change in age wont rerender
-        */}
+        <input  placeholder="random" />
+        <Child1 abc={"hello"} />
+        <Child2 memoName={memoName} handleDelete={handleDelete} memoAge={memoAge}/>
       </div>
     </>
   );
